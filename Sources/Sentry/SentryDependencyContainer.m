@@ -63,7 +63,7 @@ typedef id<SentryApplication> _Nullable (^SentryApplicationProviderBlock)(void);
 // from the dependency container, which would create cyclic dependencies and memory leaks.
 SentryApplicationProviderBlock defaultApplicationProvider = ^id<SentryApplication> _Nullable()
 {
-#if SENTRY_HAS_UIKIT
+#if SENTRY_HAS_UIKIT && !__has_feature(attribute_availability_app_extension)
     return UIApplication.sharedApplication;
 #elif TARGET_OS_OSX
     return NSApplication.sharedApplication;
