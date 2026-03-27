@@ -35,6 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (CGSize)activeScreenSize;
 #    endif // TARGET_OS_IOS || TARGET_OS_TV
 
+// Returns UIApplication.shared, or nil when called from an app extension.
+// Declared in ObjC so that __has_feature(attribute_availability_app_extension)
+// can guard the call — Swift cannot use that macro directly.
++ (nullable UIApplication *)sharedUIApplication;
+
 #endif // SENTRY_HAS_UIKIT
 
 + (NSString *_Nullable)release:(SentryOptionsObjC *)options;

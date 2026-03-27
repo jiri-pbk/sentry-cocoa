@@ -8,8 +8,8 @@ import UIKit
 // Declare the application provider block at the top level to prevent capturing 'self'
 // from the dependency container, which would create cyclic dependencies and memory leaks.
 let defaultApplicationProvider: () -> SentryApplication? = {
-#if (os(iOS) || os(tvOS) || os(visionOS)) && !SENTRY_NO_UI_FRAMEWORK && !targetEnvironment(appExtension)
-    return UIApplication.shared
+#if (os(iOS) || os(tvOS) || os(visionOS)) && !SENTRY_NO_UI_FRAMEWORK
+    return SentryDependencyContainerSwiftHelper.sharedUIApplication()
 #elseif os(macOS) && !SENTRY_NO_UI_FRAMEWORK
     return NSApplication.shared
 #else
@@ -22,7 +22,7 @@ let defaultApplicationProvider: () -> SentryApplication? = {
 extension SentryFileManager: SentryFileManagerProtocol { }
 @_spi(Private) extension SentryANRTrackerV1: SentryANRTrackerInternalProtocol { }
 
-#if (os(iOS) || os(tvOS) || os(visionOS)) && !SENTRY_NO_UI_FRAMEWORK && !targetEnvironment(appExtension)
+#if (os(iOS) || os(tvOS) || os(visionOS)) && !SENTRY_NO_UI_FRAMEWORK
 @_spi(Private) extension SentryANRTrackerV2: SentryANRTrackerInternalProtocol { }
 
 @_spi(Private) extension SentryDelayedFramesTracker: SentryDelayedFramesTrackerWrapper {

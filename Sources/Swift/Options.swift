@@ -641,11 +641,14 @@
     @_spi(Private) @objc public var userFeedbackConfiguration: SentryUserFeedbackConfiguration?
     
     /// A block that configures the user feedback feature.
+    private var _configureUserFeedback: ((SentryUserFeedbackConfiguration) -> Void)?
     @available(iOSApplicationExtension, unavailable)
     @objc public var configureUserFeedback: ((SentryUserFeedbackConfiguration) -> Void)? {
-        didSet {
+        get { _configureUserFeedback }
+        set {
+            _configureUserFeedback = newValue
             let config = SentryUserFeedbackConfiguration()
-            configureUserFeedback?(config)
+            newValue?(config)
             userFeedbackConfiguration = config
         }
     }

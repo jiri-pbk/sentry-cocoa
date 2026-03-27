@@ -20,6 +20,15 @@
 }
 #    endif // TARGET_OS_IOS || TARGET_OS_TV
 
++ (nullable UIApplication *)sharedUIApplication
+{
+#if __has_feature(attribute_availability_app_extension)
+    return nil;
+#else
+    return UIApplication.shared;
+#endif
+}
+
 #endif // SENTRY_HAS_UIKIT
 
 + (NSString *)release:(SentryOptions *)options
