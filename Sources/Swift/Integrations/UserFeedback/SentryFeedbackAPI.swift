@@ -21,6 +21,7 @@
         getIntegration()?.driver.hideWidget()
     }
     
+    @available(iOSApplicationExtension, unavailable)
     private func getIntegration() -> UserFeedbackIntegration<SentryDependencyContainer>? {
         SentrySDKInternal.currentHub().getInstalledIntegration(UserFeedbackIntegration<SentryDependencyContainer>.self) as? UserFeedbackIntegration<SentryDependencyContainer>
     }

@@ -8,7 +8,6 @@ import UIKit
  * An integration managing a workflow for end users to report feedback via Sentry.
  * - note: The default method to show the feedback form is via a floating widget placed in the bottom trailing corner of the screen. See the configuration classes for alternative options.
  */
-@available(iOSApplicationExtension, unavailable)
 final class SentryUserFeedbackIntegrationDriver: NSObject {
     let configuration: SentryUserFeedbackConfiguration
     private var widget: SentryUserFeedbackWidget?
@@ -83,7 +82,6 @@ final class SentryUserFeedbackIntegrationDriver: NSObject {
 }
 
 // MARK: SentryUserFeedbackFormDelegate
-@available(iOSApplicationExtension, unavailable)
 extension SentryUserFeedbackIntegrationDriver: SentryUserFeedbackFormDelegate {
     func finished(with feedback: SentryFeedback?) {
         if let feedback = feedback {
@@ -98,7 +96,6 @@ extension SentryUserFeedbackIntegrationDriver: SentryUserFeedbackFormDelegate {
 }
 
 // MARK: SentryUserFeedbackWidgetDelegate
-@available(iOSApplicationExtension, unavailable)
 extension SentryUserFeedbackIntegrationDriver: SentryUserFeedbackWidgetDelegate {
     func showForm() {
         showForm(screenshot: nil)
@@ -106,7 +103,6 @@ extension SentryUserFeedbackIntegrationDriver: SentryUserFeedbackWidgetDelegate 
 }
 
 // MARK: UIAdaptivePresentationControllerDelegate
-@available(iOSApplicationExtension, unavailable)
 extension SentryUserFeedbackIntegrationDriver: UIAdaptivePresentationControllerDelegate {
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         widget?.rootVC.setWidget(visible: true, animated: configuration.animations)
@@ -116,7 +112,6 @@ extension SentryUserFeedbackIntegrationDriver: UIAdaptivePresentationControllerD
 }
 
 // MARK: Private
-@available(iOSApplicationExtension, unavailable)
 private extension SentryUserFeedbackIntegrationDriver {
     func showForm(screenshot: UIImage?) {
         guard let presenter = presenter else {

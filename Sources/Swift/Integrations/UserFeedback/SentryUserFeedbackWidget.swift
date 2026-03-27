@@ -10,7 +10,6 @@ protocol SentryUserFeedbackWidgetDelegate: NSObjectProtocol {
     func showForm()
 }
 
-@available(iOSApplicationExtension, unavailable)
 final class SentryUserFeedbackWidget {
     private lazy var button = {
         let button = SentryUserFeedbackWidgetButtonView(config: config, target: self, selector: #selector(showForm))
